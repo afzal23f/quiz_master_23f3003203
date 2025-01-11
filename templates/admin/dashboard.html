@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Summary</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <span class="ms-3">Welcome, Admin</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Physics Section -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h5>Physics</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered text-center">
+              <thead>
+                <tr>
+                  <th>Chapter Name</th>
+                  <th>No. of Questions</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Force</td>
+                  <td>XXXXX</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EMF</td>
+                  <td>XXXXX</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-outline-primary w-100">+ Chapter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Dev-I Section -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h5>App Dev-I</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered text-center">
+              <thead>
+                <tr>
+                  <th>Chapter Name</th>
+                  <th>No. of Questions</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>HTML</td>
+                  <td>XXXXX</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>CSS</td>
+                  <td>XXXXX</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-outline-primary w-100">+ Chapter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-4">
+      <a href="#" class="text-decoration-none">All subjects here...</a>
+    </div>
+    <div class="text-center mt-4">
+        <a href="#" class="text-decoration-none">Add Subject</a>
+    </div>
+
+  </div>
+
+  <!-- add subject -->
+  
+
+  <!-- Bootstrap JS -->
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
+</html>

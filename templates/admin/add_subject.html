@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Subject</title>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="flash-message {{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div>
+        <h2>New Subject</h2>
+        <form action="/admin/add_subject" method="post">
+            <label for="subject_id">Subject Id : </label>
+            <input type="text" name="subject_id" id="subject_id">
+
+            <label for="subject_name">Subject Name : </label>
+            <input type="text" name="subject_name" id="subject_name"><br><br>
+
+            <label for="description">Description : </label>
+            <textarea name="description" id="description" rows="3"></textarea>
+
+            <button type="submit">Save</button>
+            <button type="reset">Cancel</button>
+        </form>
+    </div>
+</body>
+
+</html>
