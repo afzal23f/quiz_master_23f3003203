@@ -1,9 +1,11 @@
-from database import db
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from datetime import datetime
 
+db = SQLAlchemy()
 
 # Admin Model (pre-existing account, no registration required)
-class Admin(db.Model):
+class Admin(UserMixin,db.Model):
     __tablename__ = 'admin'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
@@ -11,9 +13,9 @@ class Admin(db.Model):
 
 
 # User Model
-class User(db.Model):
+class User(UserMixin,db.Model):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     full_name = db.Column(db.String(200), nullable=False)
