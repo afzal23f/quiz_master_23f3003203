@@ -1,9 +1,10 @@
-from flask import current_app as app, render_template, request, redirect, url_for, flash
+from flask import current_app as app, render_template, request, redirect, url_for, flash, jsonify
 from models.model import *
 
 @app.route("/admin/dashboard")
 def admin_dashboard():
-    return render_template("admin/dashboard.html")
+    subjects = get_subjects()
+    return render_template("admin/dashboard.html", subjects= subjects)
 
 @app.route("/admin/add_subject", methods= ["POST", "GET"])
 def add_subject():
@@ -15,13 +16,47 @@ def add_subject():
         existing_subject = Subject.query.filter_by(id=id).first()
 
         if existing_subject:
-            flash("subject Already Exits.." ,"Error")
+            flash("subject Already Exits.." ,"error")
             return redirect(url_for('add_subject'))
+        
         else:
             new_subject = Subject(id=id, name = subject_name, description = description)
             db.session.add(new_subject)
             db.session.commit()
-            flash("subject Added Succeffully.." ,"Success")
+            flash("subject Added Succeffully.." ,"success")
             return redirect(url_for('add_subject'))
 
     return render_template("admin/add_subject.html")
+
+
+@app.route("/admin/add_chapter" , methods = ["POST", "GET"])
+def add_chapter():
+    if request.method=='POST':
+        subject_id = request.args.get('subject_id')
+        chapter_name = request.form['chapter_name']
+        id = request.form['id']
+        description = request.form['description']
+
+        existing_chapter = Chapter.query.filter_by(id=id).first()
+
+        if existing_chapter:
+            return 'Chapter already exists'
+        
+        else:
+            new_chapter = Chapter(id=id, name = chapter_name, description = description, subject_id=subject_id)
+            db.session.add(new_chapter)
+            db.session.commit()
+            flash("Chapter Added Succeffully.." ,"success")
+            return redirect(request.url)
+         
+    return render_template("admin/add_chapter.html")
+
+
+def get_subjects():
+
+    subjects = Subject.query.all()
+    chapters = Chapter.query.all()
+
+    subject_list = [{"id": subject.id, "name": subject.name, "description": subject.description, "chapter": [{"name": chapter.name, "description": chapter.description} for chapter in chapters if chapter.subject_id == subject.id]} for subject in subjects]
+    chapters_list = [{"id": chapter.id, "name": chapter.name, "description": chapter.description, "subject_id" : chapter.subject_id} for chapter in chapters]
+    return subject_list
